@@ -1,0 +1,204 @@
+import customtkinter
+import tkinterDnD
+import os
+import subprocess
+from win32com.client import Dispatch
+import winshell
+import tkinter as tk
+
+
+
+
+#Автозагрузка
+def create_startup_shortcut(shortcut_name):
+    startup_folder = winshell.startup()  # Получаем путь к папке автозагрузки
+    target_file_path = os.path.abspath(__file__)  # Получаем путь к этому скрипту
+    shortcut_path = os.path.join(startup_folder, shortcut_name + '.lnk')  # Путь к ярлыку .lnk
+
+    shell = Dispatch('WScript.Shell')
+    shortcut = shell.CreateShortCut(shortcut_path)
+    shortcut.Targetpath = target_file_path
+    shortcut.save()
+
+    print(f'Ярлык "{shortcut_name}" создан в папке автозагрузки')
+
+
+shortcut_name = 'mewkalka'
+create_startup_shortcut(shortcut_name)
+
+
+
+
+
+#экран приветсвия
+
+
+def browser():
+    os.startfile("Chrome")
+def exp():
+    os.startfile("explorer")
+
+def yout():
+    os.startfile("https://www.youtube.com/")
+
+root = tk.Tk()
+
+# Создаем текстовое поле с приветствием
+label = tk.Label(root, text="Приветствую вас в программе Mewkalka!", font=("Arial", 30))
+label.pack(pady=20)
+
+# Создаем три кнопки
+button1 = tk.Button(root, text="Запустить браузер", command=browser, padx=700, pady=40, font=("Arial", 30))
+button1.pack(pady=10)
+
+button2 = tk.Button(root, text="открыть проводник ", command=exp, padx=700, pady=40, font=("Arial", 30))
+button2.pack(pady=10)
+
+button3 = tk.Button(root, text="открыть ютуб ", command=yout,padx=700, pady=40, font=("Arial", 30))
+button3.pack(pady=10)
+
+# Создаем текстовую переменную для отображения текста о нажатой кнопке
+text_var = tk.StringVar()
+text_label = tk.Label(root, textvariable=text_var, font=("Arial", 70))
+text_label.pack(pady=20)
+root.geometry("1900x1000")
+root = tk.Toplevel()
+
+
+
+
+
+
+
+#основная программа
+customtkinter.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
+customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
+app = customtkinter.CTk()
+app.geometry("400x780")
+app.title("mewkalka")
+
+print(type(app), isinstance(app, tkinterDnD.Tk))
+
+def button1_clicked():
+    os.startfile("kakmindinst")
+
+def button2_clicked():
+    os.startfile("xminecraft")
+
+def button3_clicked():
+    os.startfile("xminecraft")
+
+
+def open_temp_folder():
+    try:
+        temp_dir = "C:\\Users\\User\\AppData\\Local\\Temp"  # Замените на ваш путь к папке Temp
+        os.startfile(temp_dir)
+
+        print("Папка Temp успешно открыта.")
+    except Exception as e:
+        print(f"Ошибка при открытии папки Temp: {e}")
+def open_task_manager():
+    try:
+        subprocess.Popen(["taskmgr.exe"])  # Запуск Диспетчера Задач
+        print("Диспетчер задач успешно открыт.")
+    except Exception as e:
+        print(f"Ошибка при открытии Диспетчера задач: {e}")
+
+def virus():
+    try:
+        subprocess.Popen(["KVRT.exe"])  # Запуск Диспетчера Задач
+        print("Следуйте инструкциям")
+    except Exception as e:
+        print(f"Ошибка при открытии антивируса: {e}")
+def starth():
+    try:
+        upst = "C:\\Users\\User\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"  # Замените на ваш путь к папке Temp
+        os.startfile(upst)
+
+        print("автозагрузки открыты")
+    except Exception as e:
+        print(f"Ошибка при открытии папки автозагрузки: {e}")
+def cmdi():
+    try:
+        upst = "cmd"
+        os.startfile(upst)
+
+        print("cmd открыто")
+    except Exception as e:
+        print(f"Ошибка при открытии cmd: {e}")
+
+def mods():
+    try:
+        os.startfile("https://github.com/topics/mindustry-mod")
+    except:
+        print("нафиг")
+def games():
+    new_window = tk.Toplevel()
+    new_window.geometry("400x300")
+    def mindastry():
+        os.startfile("kakmindinst")
+
+    def minecraft():
+        os.startfile("xminecraft")
+
+    def blue():
+        os.startfile("bluestacks")
+
+    button1 = tk.Button(new_window, text="mindastry", command=mindastry,  padx=20, pady=15, font=("Arial", 15))
+    button1.pack()
+
+    button2 = tk.Button(new_window, text="minecraftx", command=minecraft,padx=20, pady=15, font=("Arial", 15))
+    button2.pack()
+
+    button3 = tk.Button(new_window, text="bluestacks10", command=blue,padx=20, pady=15, font=("Arial", 15))
+    button3.pack()
+
+
+def prilog():
+
+    new_window = tk.Toplevel()
+    new_window.geometry("400x300")
+    def capcut():
+        os.startfile("capcut.exe")
+
+    def autoclicker():
+        os.startfile("AutoClicker.exe")
+
+    def voice():
+        os.startfile("Voicemod.exe")
+
+    button1 = tk.Button(new_window, text="capcut", command=capcut, padx=20, pady=15, font=("Arial", 15))
+    button1.pack()
+
+    button2 = tk.Button(new_window, text="autoclicker", command=autoclicker,padx=20, pady=15, font=("Arial", 15))
+    button2.pack()
+
+    button3 = tk.Button(new_window, text="Voicemod(изменение голоса)", command=voice,padx=20, pady=15, font=("Arial", 15))
+    button3.pack()
+
+
+
+
+frame_1 = customtkinter.CTkFrame(master=app)
+frame_1.pack(pady=20, padx=60, fill="both", expand=True)
+
+button_1 = customtkinter.CTkButton(master=frame_1, text="открыть папку Temp", command=open_temp_folder)
+button_1.pack(pady=10, padx=10)
+button_2 = customtkinter.CTkButton(master=frame_1, text="открыть дспетчер задач", command=open_task_manager)
+button_2.pack(pady=10, padx=10)
+button_3 = customtkinter.CTkButton(master=frame_1, text="запустить проверку на вирусы", command=virus)
+button_3.pack(pady=10, padx=10)
+button_4 = customtkinter.CTkButton(master=frame_1, text="открыть папку автозагрузки", command=starth)
+button_4.pack(pady=10, padx=10)
+button_5 = customtkinter.CTkButton(master=frame_1, text="CMD", command=cmdi)
+button_5.pack(pady=10, padx=10)
+button_6 = customtkinter.CTkButton(master=frame_1, text="Скачать игры", command=games)
+button_6.pack(pady=10, padx=10)
+button_7 = customtkinter.CTkButton(master=frame_1, text="открыть раздел приложения", command=prilog)
+button_7.pack(pady=10, padx=10)
+button_8 = customtkinter.CTkButton(master=frame_1, text="Моды для Myndastry", command=mods)
+button_8.pack(pady=10, padx=10)
+
+
+app.mainloop()

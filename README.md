@@ -1,2 +1,2 @@
 # mewkalka
-к мяукалке нужно докачать нескольк офайлов из инета
+мяукалка вспомогательное ПО сайт: https://sites.google.com/view/mewukalka/versions

@@ -2,67 +2,15 @@ import customtkinter
 import tkinterDnD
 import os
 import subprocess
+
+from requests import request
 from win32com.client import Dispatch
 import winshell
 import tkinter as tk
+import customtkinter as ctk
+from PIL import Image
+import requests
 
-
-
-
-#Автозагрузка
-def create_startup_shortcut(shortcut_name):
-    startup_folder = winshell.startup()  # Получаем путь к папке автозагрузки
-    target_file_path = os.path.abspath(__file__)  # Получаем путь к этому скрипту
-    shortcut_path = os.path.join(startup_folder, shortcut_name + '.lnk')  # Путь к ярлыку .lnk
-
-    shell = Dispatch('WScript.Shell')
-    shortcut = shell.CreateShortCut(shortcut_path)
-    shortcut.Targetpath = target_file_path
-    shortcut.save()
-
-    print(f'Ярлык "{shortcut_name}" создан в папке автозагрузки')
-
-
-shortcut_name = 'mewkalka'
-create_startup_shortcut(shortcut_name)
-
-
-
-
-
-#экран приветсвия
-
-
-def browser():
-    os.startfile("Chrome")
-def exp():
-    os.startfile("explorer")
-
-def yout():
-    os.startfile("https://www.youtube.com/")
-
-root = tk.Tk()
-
-# Создаем текстовое поле с приветствием
-label = tk.Label(root, text="Приветствую вас в программе Mewkalka!", font=("Arial", 30))
-label.pack(pady=20)
-
-# Создаем три кнопки
-button1 = tk.Button(root, text="Запустить браузер", command=browser, padx=700, pady=40, font=("Arial", 30))
-button1.pack(pady=10)
-
-button2 = tk.Button(root, text="открыть проводник ", command=exp, padx=700, pady=40, font=("Arial", 30))
-button2.pack(pady=10)
-
-button3 = tk.Button(root, text="открыть ютуб ", command=yout,padx=700, pady=40, font=("Arial", 30))
-button3.pack(pady=10)
-
-# Создаем текстовую переменную для отображения текста о нажатой кнопке
-text_var = tk.StringVar()
-text_label = tk.Label(root, textvariable=text_var, font=("Arial", 70))
-text_label.pack(pady=20)
-root.geometry("1900x1000")
-root = tk.Toplevel()
 
 
 
@@ -72,11 +20,24 @@ root = tk.Toplevel()
 
 #основная программа
 customtkinter.set_appearance_mode("dark")  # Modes: "System" (standard), "Dark", "Light"
-customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 app = customtkinter.CTk()
-app.geometry("400x780")
+app.geometry("800x1000")
 app.title("mewkalka")
+img=ctk.CTkImage(Image.open('mewukalka_icon.ico'), size=(80,80))
+lb=ctk.CTkLabel(app, text="  приветсвуем вас в Mewukalka",
+                    text_color="white",
+                    fg_color="#01a6f8",
+                    width=400,
+                    height=100,
+                    font=("Bold", 20),
+                    corner_radius=10,
+                    image=img,
+                    compound="left",
+                    )
+
+lb.pack(pady=30)
 
 print(type(app), isinstance(app, tkinterDnD.Tk))
 
@@ -133,9 +94,76 @@ def mods():
         os.startfile("https://github.com/topics/mindustry-mod")
     except:
         print("нафиг")
+def blurexp():
+    blur = customtkinter.CTk()
+    blur.geometry("700x900")
+    blur.title("прозрачный проводник")
+    lb2 = ctk.CTkLabel(blur, text="прозрачный проводник",
+                      text_color="white",
+                      fg_color="#01a6f8",
+                      width=400,
+                      height=100,
+                      font=("Bold", 20),
+                      corner_radius=5,
+                      )
+
+    lb2.pack(pady=30)
+
+
+    lb3 = ctk.CTkLabel(blur, text="тут вы можете сделать проводник полупрозрачным.рекомендуем испльзовать на темной теме",
+                       text_color="white",
+                       fg_color="#01a6f8",
+                       width=200,
+                       height=30,
+                       font=("Bold", 17),
+                       corner_radius=5,
+                       wraplength=200)
+
+    lb3.pack(pady=30)
+
+    def qblurexp():
+
+        os.startfile("Release\\register.cmd")
+    def noblurexp():
+
+        os.startfile("Release\\uninstall.cmd")
+
+    frame_2 = customtkinter.CTkFrame(master=blur)
+    frame_2.pack(pady=20, padx=60, fill="both", expand=True)
+    blure = customtkinter.CTkButton(master=frame_2, text="сделать проводник прозрачным",fg_color="#01a6f8", font=("Helvetica", 30, "bold"), command=qblurexp)
+    blure.pack(pady=10, padx=10)
+    notbblur = customtkinter.CTkButton(master=frame_2, text="сделать стандартным", fg_color="#01a6f8", font=("Helvetica", 30, "bold"),command=noblurexp)
+    notbblur.pack(pady=10, padx=10)
+
+    blur.mainloop()
+
+
 def games():
-    new_window = tk.Toplevel()
-    new_window.geometry("400x300")
+    game = customtkinter.CTk()
+    game.geometry("700x900")
+    game.title("Игры")
+    lb = ctk.CTkLabel(game, text="Игры",
+                      text_color="white",
+                      fg_color="#01a6f8",
+                      width=400,
+                      height=100,
+                      font=("Bold", 40),
+                      corner_radius=5,
+                      )
+
+    lb.pack(pady=30)
+
+    lb2 = ctk.CTkLabel(game, text="тут вы можете скачать Игры",
+                       text_color="white",
+                       fg_color="#01a6f8",
+                       width=200,
+                       height=30,
+                       font=("Bold", 17),
+                       corner_radius=5,
+                       )
+
+    lb2.pack(pady=30)
+
     def mindastry():
         os.startfile("kakmindinst")
 
@@ -145,20 +173,53 @@ def games():
     def blue():
         os.startfile("bluestacks")
 
-    button1 = tk.Button(new_window, text="mindastry", command=mindastry,  padx=20, pady=15, font=("Arial", 15))
-    button1.pack()
+    def osu():
+        os.startfile("osu")
 
-    button2 = tk.Button(new_window, text="minecraftx", command=minecraft,padx=20, pady=15, font=("Arial", 15))
-    button2.pack()
+    frame_3 = customtkinter.CTkFrame(master=game)
+    frame_3.pack(pady=20, padx=60, fill="both", expand=True)
+    bt1 = customtkinter.CTkButton(master=frame_3, text="bluestacks", fg_color="green", font=("Helvetica", 30, "bold"),
+                                  command=blue)
+    bt1.pack(pady=10, padx=10)
+    bt2 = customtkinter.CTkButton(master=frame_3, text="minecraftx", fg_color="green", font=("Helvetica", 30, "bold"),
+                                  command=minecraft)
+    bt2.pack(pady=10, padx=10)
+    bt3 = customtkinter.CTkButton(master=frame_3, fg_color="green", font=("Helvetica", 30, "bold"),
+                                  text="myndustry", command=mindastry)
+    bt3.pack(pady=10, padx=10)
+    bt4 = customtkinter.CTkButton(master=frame_3, text="osu", fg_color="green", font=("Helvetica", 30, "bold"),
+                                  command=osu)
+    bt4.pack(pady=10, padx=10)
 
-    button3 = tk.Button(new_window, text="bluestacks10", command=blue,padx=20, pady=15, font=("Arial", 15))
-    button3.pack()
+    game.mainloop()
 
 
 def prilog():
+    prilog = customtkinter.CTk()
+    prilog.geometry("700x900")
+    prilog.title("приложения")
+    lb = ctk.CTkLabel(prilog, text="приложения",
+                      text_color="white",
+                      fg_color="#01a6f8",
+                      width=400,
+                      height=100,
+                      font=("Bold", 40),
+                      corner_radius=5,
+                      )
 
-    new_window = tk.Toplevel()
-    new_window.geometry("400x300")
+    lb.pack(pady=30)
+
+    lb2 = ctk.CTkLabel(prilog, text="тут вы можете скачать приложения",
+                      text_color="white",
+                      fg_color="#01a6f8",
+                      width=200,
+                      height=30,
+                      font=("Bold", 17),
+                      corner_radius=5,
+                      )
+
+    lb2.pack(pady=30)
+
     def capcut():
         os.startfile("capcut.exe")
 
@@ -168,14 +229,96 @@ def prilog():
     def voice():
         os.startfile("Voicemod.exe")
 
-    button1 = tk.Button(new_window, text="capcut", command=capcut, padx=20, pady=15, font=("Arial", 15))
-    button1.pack()
+    def npp():
+        os.startfile("npp.exe")
 
-    button2 = tk.Button(new_window, text="autoclicker", command=autoclicker,padx=20, pady=15, font=("Arial", 15))
-    button2.pack()
+    frame_3 = customtkinter.CTkFrame(master=prilog)
+    frame_3.pack(pady=20, padx=60, fill="both", expand=True)
+    bt1 = customtkinter.CTkButton(master=frame_3, text="Capcut", fg_color="green", font=("Helvetica", 30, "bold"),command=capcut)
+    bt1.pack(pady=10, padx=10)
+    bt2 = customtkinter.CTkButton(master=frame_3, text="autoclicker", fg_color="green", font=("Helvetica", 30, "bold"), command=autoclicker)
+    bt2.pack(pady=10, padx=10)
+    bt3 = customtkinter.CTkButton(master=frame_3, fg_color="green", font=("Helvetica", 30, "bold"), text="Voicemod(изменение голоса)", command=voice)
+    bt3.pack(pady=10, padx=10)
+    bt4 = customtkinter.CTkButton(master=frame_3, text="notepad++",fg_color="green", font=("Helvetica", 30, "bold"), command=npp)
+    bt4.pack(pady=10, padx=10)
 
-    button3 = tk.Button(new_window, text="Voicemod(изменение голоса)", command=voice,padx=20, pady=15, font=("Arial", 15))
-    button3.pack()
+
+    prilog.mainloop()
+
+
+
+
+
+def activ():
+    os.startfile("activ.ps1")
+
+
+
+
+
+
+
+
+
+
+def antiv():
+    an = customtkinter.CTk()
+    an.geometry("700x900")
+    an.title("антивируcы")
+    lb = ctk.CTkLabel(an, text="антивируcы",
+                      text_color="white",
+                      fg_color="#01a6f8",
+                      width=400,
+                      height=100,
+                      font=("Bold", 40),
+                      corner_radius=5,
+                      )
+
+    lb.pack(pady=30)
+
+    lb2 = ctk.CTkLabel(an, text="тут вы можете скачать антивируcы",
+                      text_color="white",
+                      fg_color="#01a6f8",
+                      width=200,
+                      height=30,
+                      font=("Bold", 17),
+                      corner_radius=5,
+                      )
+
+    lb2.pack(pady=30)
+
+    def eset():
+        os.startfile("https://www.eset.com/")
+
+    def mb():
+        os.startfile("Mbs.exe")
+
+    def kvtt():
+        os.startfile("KVRT.exe")
+
+    def key():
+        os.startfile("https://t.me/KeysForESET_bot")
+
+    frame_3 = customtkinter.CTkFrame(master=an)
+    frame_3.pack(pady=20, padx=60, fill="both", expand=True)
+    bt1 = customtkinter.CTkButton(master=frame_3, text="скачать eset(говорят что это самый лучший антивирус)", fg_color="green", font=("Helvetica", 20, "bold"),
+                                  command=eset)
+    bt1.pack(pady=10, padx=10)
+    bt2 = customtkinter.CTkButton(master=frame_3, text="скачать malwarebytes(Рекомендуем)", fg_color="green", font=("Helvetica", 30, "bold"),
+                                  command=mb)
+    bt2.pack(pady=10, padx=10)
+    bt3 = customtkinter.CTkButton(master=frame_3, fg_color="green", font=("Helvetica", 30, "bold"),
+                                  text="ключи для eset(Рабочие)", command=key)
+    bt3.pack(pady=10, padx=10)
+    bt4 = customtkinter.CTkButton(master=frame_3, text="проверить на вирусы(без скачивания)", fg_color="green",
+                                  font=("Helvetica", 25, "bold"), command=kvtt)
+    bt4.pack(pady=10, padx=10)
+
+
+    an.mainloop()
+
+
 
 
 
@@ -183,22 +326,26 @@ def prilog():
 frame_1 = customtkinter.CTkFrame(master=app)
 frame_1.pack(pady=20, padx=60, fill="both", expand=True)
 
-button_1 = customtkinter.CTkButton(master=frame_1, text="открыть папку Temp", command=open_temp_folder)
+button_1 = customtkinter.CTkButton(master=frame_1, text="открыть папку Temp",fg_color="green", font=("Helvetica", 20, "bold"), command=open_temp_folder)
 button_1.pack(pady=10, padx=10)
-button_2 = customtkinter.CTkButton(master=frame_1, text="открыть дспетчер задач", command=open_task_manager)
+button_2 = customtkinter.CTkButton(master=frame_1, text="открыть дспетчер задач",fg_color="green", font=("Helvetica", 20, "bold"), command=open_task_manager)
 button_2.pack(pady=10, padx=10)
-button_3 = customtkinter.CTkButton(master=frame_1, text="запустить проверку на вирусы", command=virus)
-button_3.pack(pady=10, padx=10)
-button_4 = customtkinter.CTkButton(master=frame_1, text="открыть папку автозагрузки", command=starth)
+button_4 = customtkinter.CTkButton(master=frame_1, text="открыть папку автозагрузки", fg_color="green", font=("Helvetica", 20, "bold"),command=starth)
 button_4.pack(pady=10, padx=10)
-button_5 = customtkinter.CTkButton(master=frame_1, text="CMD", command=cmdi)
+button_5 = customtkinter.CTkButton(master=frame_1, text="CMD",fg_color="green", font=("Helvetica", 20, "bold"), command=cmdi)
 button_5.pack(pady=10, padx=10)
-button_6 = customtkinter.CTkButton(master=frame_1, text="Скачать игры", command=games)
+button_6 = customtkinter.CTkButton(master=frame_1, text="Скачать игры", fg_color="green", font=("Helvetica", 20, "bold"),command=games)
 button_6.pack(pady=10, padx=10)
-button_7 = customtkinter.CTkButton(master=frame_1, text="открыть раздел приложения", command=prilog)
+button_7 = customtkinter.CTkButton(master=frame_1, text="открыть раздел приложения", fg_color="green", font=("Helvetica", 20, "bold"),command=prilog)
 button_7.pack(pady=10, padx=10)
-button_8 = customtkinter.CTkButton(master=frame_1, text="Моды для Myndastry", command=mods)
+button_8 = customtkinter.CTkButton(master=frame_1, text="Моды для Myndastry", fg_color="green", font=("Helvetica", 20, "bold"),command=mods)
 button_8.pack(pady=10, padx=10)
+button_9 = customtkinter.CTkButton(master=frame_1, text="прозрачный проводник", fg_color="green", font=("Helvetica", 20, "bold"),command=blurexp)
+button_9.pack(pady=10, padx=10)
+button_10 = customtkinter.CTkButton(master=frame_1, text="антивирусы", fg_color="#01a6f8", font=("Helvetica", 20, "bold"),command=antiv)
+button_10.pack(pady=10, padx=10)
+button_11 = customtkinter.CTkButton(master=frame_1, text="активировать microsoft office или windows", fg_color="#ff9118", font=("Helvetica", 20, "bold"),command=activ)
+button_11.pack(pady=10, padx=10)
 
 
 app.mainloop()
